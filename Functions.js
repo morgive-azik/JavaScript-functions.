@@ -24,12 +24,12 @@ Usage example:
 */
 function tsp(variable=null,possible) {
     if(!Array.isArray(possible)||possible.length==0||(possible.filter(q=>q=='||'||q=='&&').length+1!=possible.filter(q=>q!='||'&&q!='&&').length&&possible.filter(q=>q=='||'||q=='&&').length!=0)) return 0;
-    if(possible.filter(q=>q=='||'||q=='&&').length==0) for(let e=1;e<possible.length-1;e+=2) possible.splice(e,0,'&&');
-    if(variable!==null)
+    if(possible.filter(q=>q=='||'||q=='&&').length==0) for(let e=1;e<possible.length;e+=2) possible.splice(e,0,'&&');
+    if(variable!==null) {
         possible=possible.map(q=>{
             if(q=='||'||q=='&&') return q;
             else return variable===q;
         });
-    else if(!possible.filter(q=>q!='||'&&q!='&&').every(q=>typeof q=='boolean')) return 0;
+    } else if(!possible.filter(q=>q!='||'&&q!='&&').every(q=>typeof q=='boolean')) return 0;
     return variable!==false?eval(possible.join('')):!eval(possible.join(''));
 };
