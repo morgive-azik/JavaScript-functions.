@@ -22,9 +22,9 @@ Usage example:
 	ts('text',['text','||','test']); | return true
  	ts(undefined,[true,'&&',false]); | return false
 */
-function ts(variable=null,possible) {
-    if(!Array.isArray(w)||w.length==0||(w.filter(q=>q=='||'||q=='&&').length+1!=w.filter(q=>q!='||'&&q!='&&').length&&w.filter(q=>q=='||'||q=='&&').length!=0)) return 0;
-    if(w.filter(q=>q=='||'||q=='&&').length==0) for(let e=1;e<w.length-1;e+=2) w.splice(e,0,'&&');
+function tsp(variable=null,possible) {
+    if(!Array.isArray(possible)||possible.length==0||(possible.filter(q=>q=='||'||q=='&&').length+1!=possible.filter(q=>q!='||'&&q!='&&').length&&possible.filter(q=>q=='||'||q=='&&').length!=0)) return 0;
+    if(possible.filter(q=>q=='||'||q=='&&').length==0) for(let e=1;e<possible.length-1;e+=2) possible.splice(e,0,'&&');
     if(variable!==null)
         possible=possible.map(q=>{
             if(q=='||'||q=='&&') return q;
